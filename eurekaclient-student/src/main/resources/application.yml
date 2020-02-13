@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: student-service   #current service name to be used by the eureka server
+server:
+  port: 8098
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+    register-with-eureka: true
+    fet
+
+
+management:
+  security:
+    enabled: false  #disable the spring security on the management endpoints like /env, /refresh etc.
+
+logging:
+  level:
+    com.example.howtodoinjava: DEBUG

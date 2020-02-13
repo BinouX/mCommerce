@@ -1,0 +1,21 @@
+server:
+  port: 9098
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+spring:
+  application:
+    name: school-service   #current service name to be used by the eureka server
+
+
+logging:
+  level:
+    com.example.howtodoinjava: DEBUG

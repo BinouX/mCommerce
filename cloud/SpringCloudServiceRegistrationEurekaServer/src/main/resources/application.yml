@@ -1,0 +1,60 @@
+spring:
+  profiles: default
+server:
+  port: 9000
+eureka:
+  instance:
+    hostname: eureka-server.com
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+---
+spring:
+  profiles: united-states
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id
+server:
+  port: 9001
+eureka:
+  instance:
+    hostname: my-eureka-server-us.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server-fr.com:9002/eureka/,http://my-eureka-server-be.com:9003/eureka/
+
+---
+spring:
+  profiles: france
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: my-eureka-server-fr.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server-us.com:9002/eureka/,http://my-eureka-server-be.com:9003/eureka/
+
+---
+spring:
+  profiles: belgium
+  application:
+    name: eureka-server-clustered   # ==> This is Service-Id
+server:
+  port: 9003
+eureka:
+  instance:
+    hostname: my-eureka-server-be.com
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://my-eureka-server-fr.com:9002/eureka/,http://my-eureka-server-us.com:9003/eureka/
